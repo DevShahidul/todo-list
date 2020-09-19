@@ -3,7 +3,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      
+      <h2>Hello Netlify</h2>
     </div>
   );
 }
