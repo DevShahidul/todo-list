@@ -76,6 +76,7 @@ export const Button = styled.button`
     &:disabled{
         background-color: #efefef;
         color: #222222;
+        pointer-events: none
     }
 `;
 
