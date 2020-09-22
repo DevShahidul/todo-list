@@ -106,7 +106,7 @@ export const DeleteIcon = styled(FaTrashAlt)`
     font-size: 16px;
     display: flex;
     align-items: center;
-    color: black;
+    color: red;
     width: 30px;
     justify-content: center;
     cursor: pointer;

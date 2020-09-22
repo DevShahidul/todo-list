@@ -12,7 +12,8 @@ export const TodoList = ({
     items,
     handleDelete,
     handleEdit,
-    handleClearList
+    handleClearList,
+    addedItems
 }) => {
     return (
         <>
@@ -21,7 +22,9 @@ export const TodoList = ({
                 <ListContainer>
                 {items.map((item) => <TodoItem key={item.id} title={item.title} handleDelete={handleDelete} handleEdit={handleEdit} id={item.id} />)}
                 </ListContainer>
-                <ClearButton onClick={handleClearList}>Clear List</ClearButton>
+                {
+                    addedItems ? <ClearButton onClick={handleClearList}>Clear List</ClearButton> : ''
+                }
             </Container>
         </>
     )

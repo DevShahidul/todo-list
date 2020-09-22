@@ -7,7 +7,8 @@ export class App extends Component {
     items: [],
     id: uuidv4(),
     item: '',
-    editItme: false
+    editItme: false,
+    addedItems: false
   }
 
   // Handle change
@@ -31,7 +32,8 @@ export class App extends Component {
       items: UpdateItems,
       id: uuidv4(),
       item: '',
-      editItme: false
+      editItme: false,
+      addedItems: true
     })
 
   }
@@ -53,21 +55,29 @@ export class App extends Component {
     const filterItem = this.state.items.filter((item) => item.id !== id);
     this.setState({
       items: filterItem
-    })
-    console.log(`Handle delete ${id}`)
+    });
+    
+    if(this.state.items.length === 1){
+      this.setState({
+        addedItems: false
+      })
+    }
+
   }
 
   handleClearList = () => {
     this.setState({
-      items: []
+      items: [],
+      addedItems: false
     })
   }
   
   render() {
     return (
       <>
-        <TodoInput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-        <TodoList items={this.state.items} handleDelete={this.handleDelete} handleEdit={this.handleEdit} handleClearList={this.handleClearList}/>
+        <TodoInput editItme={this.state.editItme} item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        {this.state.addedItems ? <TodoList addedItems={this.state.addedItems} items={this.state.items} handleDelete={this.handleDelete} handleEdit={this.handleEdit} handleClearList={this.handleClearList}/> : ''}
+        
       </>
     )
   }
