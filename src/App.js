@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-//import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import {TodoInput} from './Components/TodoInput';
 import {TodoList} from './Components/TodoList';
 export class App extends Component {
   state = {
-    items: [
-      {
-        id: 1,
-        title: 'Wake Up'
-      },
-      {
-        id: 2,
-        title: "Make breackfirst"
-      }
-    ],
+    items: [],
+    id: uuidv4(),
     item: '',
     editItme: false
   }
+
 
   handleChange = (e) => {
     this.setState({
@@ -25,8 +18,20 @@ export class App extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log('Handle Submit')
+    const NewItem = {
+      id: this.state.id,
+      title: this.state.item
+    }
+
+    const UpdateItems = [...this.state.items, NewItem]
+
+    this.setState({
+      items: UpdateItems,
+      id: uuidv4(),
+      item: '',
+      editItme: false
+    })
+
   }
   handleEdit = (id) => {
     console.log('Handle delete')
