@@ -3,25 +3,25 @@ import {
     Container,
     Heading,
     ListContainer,
-    ListItem,
-    ClearButton,
-    EditeIcon,
-    DeleteIcon
+    ClearButton
 } from './styled.elements';
 
-export const TodoList = () => {
+import {TodoItem} from './TodoItem';
+
+export const TodoList = ({
+    items,
+    handleDelete,
+    handleEdit,
+    handleClearList
+}) => {
     return (
         <>
             <Container>
                 <Heading>Todo List</Heading>
                 <ListContainer>
-                    <ListItem>
-                        Item
-                        <EditeIcon />
-                        <DeleteIcon />
-                    </ListItem>
+                {items.map((item) => <TodoItem key={item.id} title={item.title} handleDelete={handleDelete} handleEdit={handleEdit} id={item.id} />)}
                 </ListContainer>
-                <ClearButton>Clear List</ClearButton>
+                <ClearButton onClick={handleClearList}>Clear List</ClearButton>
             </Container>
         </>
     )

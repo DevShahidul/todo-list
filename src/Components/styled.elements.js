@@ -73,6 +73,10 @@ export const Button = styled.button`
         background-color: blue;
         color: #ffffff;
     }
+    &:disabled{
+        background-color: #efefef;
+        color: #222222;
+    }
 `;
 
 export const ClearButton = styled(Button)`

@@ -10,20 +10,22 @@ export class App extends Component {
     editItme: false
   }
 
-
+  // Handle change
   handleChange = (e) => {
     this.setState({
       item: e.target.value
     });
   }
+
+  // Handle submit
   handleSubmit = (e) => {
     e.preventDefault();
-    const NewItem = {
+    const newItem = {
       id: this.state.id,
       title: this.state.item
     }
 
-    const UpdateItems = [...this.state.items, NewItem]
+    const UpdateItems = [...this.state.items, newItem]
 
     this.setState({
       items: UpdateItems,
@@ -33,23 +35,39 @@ export class App extends Component {
     })
 
   }
+
+  // Handle edit
   handleEdit = (id) => {
-    console.log('Handle delete')
+    const filterItem = this.state.items.filter(item => item.id !== id);
+    const selectedItem = this.state.items.find(item => item.id === id);
+    this.setState({
+      items: filterItem,
+      item: selectedItem.title,
+      editItme: true,
+      id: id
+    })
   }
 
+  // Handle delete
   handleDelete = (id) => {
+    const filterItem = this.state.items.filter((item) => item.id !== id);
+    this.setState({
+      items: filterItem
+    })
     console.log(`Handle delete ${id}`)
   }
 
   handleClearList = () => {
-    console.log('Handle Clear')
+    this.setState({
+      items: []
+    })
   }
   
   render() {
     return (
       <>
         <TodoInput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-        <TodoList item={this.state.items} handleDelete={this.handleDelete} handleEdit={this.handleEdit} handleClearList={this.handleClearList}/>
+        <TodoList items={this.state.items} handleDelete={this.handleDelete} handleEdit={this.handleEdit} handleClearList={this.handleClearList}/>
       </>
     )
   }

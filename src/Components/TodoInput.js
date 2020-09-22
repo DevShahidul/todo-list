@@ -19,7 +19,7 @@ export const TodoInput = ({
             <Heading>Todo Input</Heading>
             <TodoForm onSubmit={handleSubmit}>
                 <AddTodo onChange={handleChange} value={item} />
-                <Button>Add Item</Button>
+                <Button  disabled={item ? false : true}>Add Item</Button>
             </TodoForm>
         </Container>
         </>
